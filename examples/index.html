@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="/dist/Vue3SplitPane.umd.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <split-pane v-on:resize="resize" :min-percent='20' :default-percent='30' split="vertical" style="height: 300px;">
+      <template #paneL>
+        A
+      </template>
+      <template #paneR>
+        B
+      </template>
+    </split-pane>
+  </div>
+</body>
+
+</html>
+<script>
+  const app = Vue.createApp({
+    components: { 'split-pane': Vue3SplitPane }
+  })
+  app.mount('#app')
+</script>
