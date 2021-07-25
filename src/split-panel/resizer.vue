@@ -22,7 +22,7 @@
   }
 </script>
 
-<style >
+<style scoped>
 .splitter-pane-resizer {
   -moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;

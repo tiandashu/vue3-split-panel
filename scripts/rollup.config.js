@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser'
 import VuePlugin from 'rollup-plugin-vue'
 import clear from 'rollup-plugin-clear'
 import postcss from 'rollup-plugin-postcss'
-import { name, version, author } from './package.json'
+import { name, version, author } from '../package.json'
 
 const banner =
 '/*!\n' +
@@ -15,13 +15,13 @@ const banner =
 ' * Released under the MIT License.\n' +
 ' */'
 
-const pkgName = 'Vue3SplitPane'
+const pkgName = 'Vue3SplitPanel'
 
 export default {
   input: 'src/index.js',
   output: [
     {
-      file: `dist/${pkgName}.umd.js`,
+      file: `dist/index.umd.js`,
       format: 'umd',
       name: pkgName,
       globals: {
@@ -30,7 +30,7 @@ export default {
       banner
     },
     {
-      file: `dist/${pkgName}.umd.min.js`,
+      file: `dist/index.umd.min.js`,
       format: 'umd',
       name: pkgName,
       banner,
@@ -40,13 +40,13 @@ export default {
       plugins: [terser()]
     },
     {
-      file: `dist/${pkgName}.cjs.js`,
+      file: `dist/index.cjs.js`,
       format: 'cjs',
       name: name,
       banner
     },
     {
-      file: `dist/${pkgName}.esm.js`,
+      file: `dist/index.esm.js`,
       format: 'es',
       banner
     }
@@ -63,11 +63,11 @@ export default {
       css: true 
     }),
     postcss(),
-    // eslint({
-    //   throwOnError: false, // 抛出异常并阻止打包
-    //   include: ['src/**'],
-    //   exclude: ['node_modules/**']
-    // }),
+    eslint({
+      throwOnError: false, // 抛出异常并阻止打包
+      include: ['src/**'],
+      exclude: ['node_modules/**']
+    }),
     babel({ 
       babelHelpers: 'bundled' 
     })

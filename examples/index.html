@@ -5,28 +5,53 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Vue3SplitPane-demo</title>
   <script src="https://unpkg.com/vue@next"></script>
-  <script src="/dist/Vue3SplitPane.umd.js"></script>
+  <script src="./index.umd.js"></script>
+  <style>
+    #app {
+      height: 100vh;
+    }
+
+    .a {
+      background-color: pink;
+      height: 100%;
+    }
+
+    .b {
+      background-color: teal;
+      height: 100%;
+    }
+  </style>
 </head>
 
 <body>
   <div id="app">
-    <split-pane v-on:resize="resize" :min-percent='20' :default-percent='30' split="vertical" style="height: 300px;">
-      <template #paneL>
-        A
+    <split-panel v-on:resize="resize" :min-percent='20' :default-percent='30' split="vertical">
+      <template #panel>
+        <div class="a">a</div>
       </template>
-      <template #paneR>
-        B
+      <template #paner>
+        <div class="b">B</div>
       </template>
-    </split-pane>
+    </split-panel>
   </div>
 </body>
 
 </html>
 <script>
   const app = Vue.createApp({
-    components: { 'split-pane': Vue3SplitPane }
+    components: { 'split-panel': Vue3SplitPanel },
+    setup(props) {
+      function resize() {
+
+      }
+
+      return {
+        resize,
+      }
+    }
   })
+  // app.use(Vue3SplitPanel)
   app.mount('#app')
 </script>

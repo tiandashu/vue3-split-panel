@@ -1,25 +1,25 @@
 <template>
   <div :style="{ cursor, userSelect}" class="vue-splitter-container clearfix" @mouseup="onMouseUp" @mousemove="onMouseMove">
 
-    <panel class="splitter-panel splitter-paneL" :split="split" :style="{ [type]: percent+'%'}">
-      <slot name="paneL"></slot>
-    </panel>
+    <pane class="splitter-pane splitter-paneL" :split="split" :style="{ [type]: percent+'%'}">
+      <slot name="panel"></slot>
+    </pane>
 
     <resizer :className="className" :style="{ [resizeType]: percent+'%'}" :split="split" @mousedown.native="onMouseDown" @click.native="onClick"></resizer>
 
-    <panel class="splitter-panel splitter-paneR" :split="split" :style="{ [type]: 100-percent+'%'}">
-      <slot name="paneR"></slot>
-    </panel>
+    <pane class="splitter-pane splitter-paneR" :split="split" :style="{ [type]: 100-percent+'%'}">
+      <slot name="paner"></slot>
+    </pane>
     <div class="vue-splitter-container-mask" v-if="active"></div>
   </div>
 </template>
 
 <script>
   import Resizer from './resizer.vue'
-  import Panel from './panel.vue'
+  import Pane from './pane.vue'
   export default {
-    name: 'splitPanel',
-    components: { Resizer, Panel },
+    name: 'splitPane',
+    components: { Resizer, Pane },
     props: {
       minPercent: {
         type: Number,
@@ -46,7 +46,7 @@
       }
     },
     watch: {
-      defaultPercent(newValue){
+      defaultPercent(newValue,oldValue){
         this.percent = newValue
       }
     },
@@ -106,8 +106,8 @@
   }
 </script>
 
-<style>
-.clearfix::after {
+<style scoped>
+.clearfix:after {
   visibility: hidden;
   display: block;
   font-size: 0;
